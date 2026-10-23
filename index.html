@@ -69,20 +69,24 @@ document.getElementById("reveal").addEventListener("click", () => {
 
 // みんなで共有するアクセスカウンター
 const visitCount = document.getElementById("visit-count");
-fetch("https://api.counterapi.dev/v1/nandemonai-ka2noaraziru-collab/visits/up")
+
+fetch("https://abacus.jasoncameron.dev/hit/nandemonai-ka2noaraziru-collab/visits")
   .then(response => {
     if (!response.ok) throw new Error("Counter unavailable");
     return response.json();
   })
   .then(data => {
-    const count = data.count ?? data.value;
-    if (typeof count !== "number") throw new Error("Invalid counter response");
-    visitCount.textContent = count.toLocaleString("ja-JP");
+    if (typeof data.value !== "number") {
+      throw new Error("Invalid counter response");
+    }
+    visitCount.textContent = data.value.toLocaleString("ja-JP");
   })
   .catch(() => {
     visitCount.textContent = "—";
-    document.querySelector(".counter-note").textContent = "アクセス数を読み込めませんでした。";
+    document.querySelector(".counter-note").textContent =
+      "アクセス数を読み込めませんでした。";
   });
+
 </script>
 </body>
 </html>
