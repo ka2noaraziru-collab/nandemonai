@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,36 +5,156 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>なんでもない場所</title>
 <style>
+:root {
+  --site-primary: #202020;
+  --site-secondary: #e7ff63;
+  --site-background: #f6f4ee;
+}
 * { box-sizing: border-box; }
-body { margin: 0; font-family: "Yu Gothic", sans-serif; background: #f6f4ee; color: #202020; }
-header { padding: 24px 7vw; display:flex; justify-content:space-between; border-bottom:1px solid #d8d6cf; font-size:13px; letter-spacing:.08em; }
-.logo { font-weight:900; }
-.pill { border:1px solid #aaa89f; border-radius:99px; padding:7px 12px; }
-main { max-width:900px; margin:0 auto; padding:clamp(48px,10vw,110px) 7vw 80px; }
-.eyebrow { font-size:12px; letter-spacing:.18em; margin-bottom:24px; }
-h1 { font-size:clamp(44px,9vw,94px); line-height:1.04; letter-spacing:-.07em; margin:0 0 28px; font-weight:900; }
-h1 span { background:#e7ff63; padding:0 .12em; }
-.intro { max-width:560px; font-size:clamp(16px,2vw,20px); line-height:1.9; color:#55544f; }
-.counter { margin:48px auto 28px; padding:22px; max-width:420px; text-align:center; border:1px solid #e0ded6; border-radius:18px; background:#fff; }
-.counter-label { font-size:12px; letter-spacing:.12em; color:#77756e; }
-#visit-count { display:block; margin-top:8px; font-size:clamp(36px,8vw,54px); font-weight:900; }
-.counter-note { margin-top:8px; font-size:12px; color:#77756e; }
-.card { margin-top:28px; background:#fff; border:1px solid #e0ded6; border-radius:22px; padding:clamp(22px,5vw,40px); display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center; }
-.card small { color:#77756e; }
-.card h2 { font-size:clamp(23px,4vw,34px); margin:10px 0; }
-.card p { line-height:1.8; color:#66645d; }
-button { border:0; border-radius:100px; padding:15px 20px; font-size:15px; font-weight:800; background:#202020; color:white; cursor:pointer; }
-#message { margin-top:22px; padding:18px 20px; background:#f0efea; border-radius:14px; line-height:1.8; display:none; }
-footer { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; border-top:1px solid #d8d6cf; padding:24px 7vw; font-size:12px; color:#77756e; }
-@media(max-width:600px) { .card { grid-template-columns:1fr; } .card button { width:100%; } }
+body {
+  margin: 0;
+  font-family: "Yu Gothic", sans-serif;
+  background: var(--site-background);
+  color: #202020;
+}
+#app { min-height: 100vh; }
+header {
+  padding: 24px 7vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d8d6cf;
+  font-size: 13px;
+  letter-spacing: .08em;
+}
+.logo { font-weight: 900; }
+.pill {
+  border: 1px solid #aaa89f;
+  border-radius: 99px;
+  padding: 7px 12px;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: clamp(48px, 10vw, 110px) 7vw 80px;
+}
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: .18em;
+  margin-bottom: 24px;
+}
+h1 {
+  font-size: clamp(44px, 9vw, 94px);
+  line-height: 1.04;
+  letter-spacing: -.07em;
+  margin: 0 0 28px;
+  font-weight: 900;
+}
+h1 span {
+  background: var(--site-secondary);
+  padding: 0 .12em;
+}
+.intro {
+  max-width: 560px;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.9;
+  color: #55544f;
+}
+.counter {
+  margin: 0 auto 28px;
+  padding: 22px;
+  max-width: 420px;
+  text-align: center;
+  border: 1px solid #e0ded6;
+  border-radius: 18px;
+  background: white;
+}
+.counter-label {
+  font-size: 12px;
+  letter-spacing: .12em;
+  color: #77756e;
+}
+#visit-count {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(36px, 8vw, 54px);
+  font-weight: 900;
+  letter-spacing: -.05em;
+}
+.counter-note {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #77756e;
+}
+.card {
+  margin-top: 48px;
+  background: white;
+  border: 1px solid #e0ded6;
+  border-radius: 22px;
+  padding: clamp(22px, 5vw, 40px);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.card small { color: #77756e; letter-spacing: .1em; }
+.card h2 {
+  font-size: clamp(23px, 4vw, 34px);
+  margin: 10px 0;
+  letter-spacing: -.04em;
+}
+.card p { line-height: 1.8; color: #66645d; margin: 0; }
+button {
+  border: 0;
+  border-radius: 100px;
+  padding: 15px 20px;
+  font-size: 15px;
+  font-weight: 800;
+  background: #202020;
+  color: white;
+  cursor: pointer;
+}
+button:hover { background: #444; }
+#message {
+  margin-top: 22px;
+  padding: 18px 20px;
+  background: #f0efea;
+  border-radius: 14px;
+  line-height: 1.8;
+  display: none;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px solid #d8d6cf;
+  padding: 24px 7vw;
+  font-size: 12px;
+  color: #77756e;
+}
+@media (max-width: 600px) {
+  .card { grid-template-columns: 1fr; }
+  .card button { width: 100%; }
+  header { padding: 20px 6vw; }
+}
 </style>
 </head>
 <body>
-<header><div class="logo">NANDEMONAI.</div><div class="pill">NO. 001 / WEB EXPERIMENT</div></header>
+<div id="app">
+<header>
+  <div class="logo">NANDEMONAI.</div>
+  <div class="pill">NO. 001 / WEB EXPERIMENT</div>
+</header>
+
 <main>
   <div class="eyebrow">YOU FOUND A LITTLE SOMETHING</div>
   <h1>ここは、<br><span>なんでもない</span><br>場所です。</h1>
-  <p class="intro">検索しても出てこない。誰かに教えるほどでもない。<br>でも、あなたが今ここを見ていることだけは、ちょっと面白い。</p>
+  <p class="intro">
+    検索しても出てこない。誰かに教えるほどでもない。<br>
+    でも、あなたが今ここを見ていることだけは、ちょっと面白い。
+  </p>
 
   <section class="counter" aria-live="polite">
     <div class="counter-label">TOTAL VISITS</div>
@@ -47,13 +166,23 @@ footer { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; 
     <div>
       <small>本日のミッション</small>
       <h2>今日、ひとつだけ寄り道する。</h2>
-      <p>いつもと違う道を通る。知らない店をのぞく。<br>そんな小さな冒険をしてみてください。</p>
+      <p>
+        いつもと違う道を通る。知らない店をのぞく。<br>
+        そんな小さな冒険をしてみてください。
+      </p>
     </div>
     <button id="reveal">秘密のメッセージ</button>
   </section>
+
   <div id="message" role="status"></div>
 </main>
-<footer><span>© NANDEMONAI. — 特に何も売っていません。</span><span>あなたの訪問を歓迎します。</span></footer>
+
+<footer>
+  <span>© NANDEMONAI. — 特に何も売っていません。</span>
+  <span>あなたの訪問を歓迎します。</span>
+</footer>
+</div>
+
 <script>
 const messages = [
   "おめでとうございます。秘密のメッセージを見つけました。内容は特にありません。",
@@ -61,24 +190,35 @@ const messages = [
   "あなたは今、インターネットのすみっこにいます。深呼吸して、よい一日を。",
   "今日のラッキーアイテムは、道ばたにある何かです。見つけても持ち帰らないでね。"
 ];
+
 document.getElementById("reveal").addEventListener("click", () => {
   const box = document.getElementById("message");
   box.textContent = messages[Math.floor(Math.random() * messages.length)];
   box.style.display = "block";
 });
 
-// みんなで共有するアクセスカウンター
+// アクセスカウンター
 const visitCount = document.getElementById("visit-count");
+const counterNote = document.querySelector(".counter-note");
 
 window.updateVisitCount = function(data) {
-  visitCount.textContent = Number(data.value).toLocaleString("ja-JP");
+  if (data && typeof data.value === "number") {
+    visitCount.textContent = data.value.toLocaleString("ja-JP");
+  } else {
+    showCounterError();
+  }
 };
+
+function showCounterError() {
+  visitCount.textContent = "—";
+  counterNote.textContent = "アクセス数を読み込めませんでした。";
+}
 
 const counterScript = document.createElement("script");
 counterScript.src =
   "https://abacus.jasoncameron.dev/hit/nandemonai-ka2noaraziru-collab/visits?callback=updateVisitCount";
+counterScript.onerror = showCounterError;
 document.body.appendChild(counterScript);
-
 </script>
 </body>
 </html>
