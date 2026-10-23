@@ -70,22 +70,14 @@ document.getElementById("reveal").addEventListener("click", () => {
 // みんなで共有するアクセスカウンター
 const visitCount = document.getElementById("visit-count");
 
-fetch("https://abacus.jasoncameron.dev/hit/nandemonai-ka2noaraziru-collab/visits")
-  .then(response => {
-    if (!response.ok) throw new Error("Counter unavailable");
-    return response.json();
-  })
-  .then(data => {
- const count = data.count ?? data.value;
-if (typeof count !== "number") {
-  throw new Error("Invalid counter response");
-}
-visitCount.textContent = count.toLocaleString("ja-JP");
-  .catch(() => {
-    visitCount.textContent = "—";
-    document.querySelector(".counter-note").textContent =
-      "アクセス数を読み込めませんでした。";
-  });
+window.updateVisitCount = function(data) {
+  visitCount.textContent = Number(data.value).toLocaleString("ja-JP");
+};
+
+const counterScript = document.createElement("script");
+counterScript.src =
+  "https://abacus.jasoncameron.dev/hit/nandemonai-ka2noaraziru-collab/visits?callback=updateVisitCount";
+document.body.appendChild(counterScript);
 
 </script>
 </body>
