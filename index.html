@@ -76,11 +76,11 @@ fetch("https://abacus.jasoncameron.dev/hit/nandemonai-ka2noaraziru-collab/visits
     return response.json();
   })
   .then(data => {
-    if (typeof data.value !== "number") {
-      throw new Error("Invalid counter response");
-    }
-    visitCount.textContent = data.value.toLocaleString("ja-JP");
-  })
+ const count = data.count ?? data.value;
+if (typeof count !== "number") {
+  throw new Error("Invalid counter response");
+}
+visitCount.textContent = count.toLocaleString("ja-JP");
   .catch(() => {
     visitCount.textContent = "—";
     document.querySelector(".counter-note").textContent =
