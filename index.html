@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>なんでもない場所。</title>
+<style>
+body {
+  margin: 0;
+  padding: 50px 24px;
+  background: #f6f4ee;
+  color: #202020;
+  font-family: sans-serif;
+  text-align: center;
+}
+h1 {
+  font-size: 48px;
+  line-height: 1.5;
+}
+span {
+  background: #e7ff63;
+}
+p {
+  line-height: 2;
+}
+button {
+  margin-top: 30px;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 30px;
+  background: #202020;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+#message {
+  display: none;
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 400px;
+  background: white;
+  border-radius: 15px;
+  line-height: 1.8;
+}
+</style>
+</head>
+<body>
+
+<h1>ここは、<br><span>なんでもない</span><br>場所です。</h1>
+
+<p>
+検索しても出てこない。<br>
+誰かに教えるほどでもない。<br>
+でも、あなたが今ここを見ていることだけは、<br>
+ちょっと面白い。
+</p>
+
+<h2>今日、ひとつだけ寄り道する。</h2>
+<p>いつもと違う道を通ってみよう。</p>
+
+<button onclick="showMessage()">秘密のメッセージ</button>
+
+<div id="message"></div>
+
+<script>
+function showMessage() {
+  const messages = [
+    "おめでとう。特に何もありません。",
+    "ここまで来たあなたはすごい。何もないけど。",
+    "今日のラッキーアイテムは、道ばたの何かです。",
+    "このサイトを誰かに見せてみよう。反応は保証しません。"
+  ];
+
+  const message = messages[
+    Math.floor(Math.random() * messages.length)
+  ];
+
+  const box = document.getElementById("message");
+  box.textContent = message;
+  box.style.display = "block";
+}
+</script>
+
+</body>
+</html>
